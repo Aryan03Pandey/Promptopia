@@ -35,11 +35,16 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/posts`);
+      try{
+        const response = await fetch(`/api/users/${session?.user.id}/posts`);
 
-      const data = await response.json();
+        const data = await response.json();
 
-      setPosts(data);
+        setPosts(data);
+      }
+      catch(error){
+        console.log(error);
+      }
     }
 
     if(session?.user.id){
